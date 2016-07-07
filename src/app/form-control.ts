@@ -1,6 +1,6 @@
-import { NgForm, FormBuilder, FormControl, Validators, FormGroup } from '@angular/forms';
+import { NgForm, FormBuilder, FormControl, Validators, FormGroup, REACTIVE_FORM_DIRECTIVES } from '@angular/forms';
 
-export class FormFormControl {
+export class FormControls {
  name: FormControl;
  age: FormControl;
  email: FormControl;
@@ -10,23 +10,17 @@ export class FormFormControl {
  
  form: FormGroup;
  
- constructor(private builder: FormBuilder) {
- 
-   this.name = new FormControl('', Validators.required, Validators.minLength(6));
-   this.age = new FormControl('', Validators.required);
-   this.email = new FormControl('', Validators.required);
-   this.password = new FormControl('', Validators.required);
-   this.confirm_password = new FormControl('', Validators.required);
-   this.terms = new FormControl('', Validators.required);
- 
-   this.form = builder.group({
-     name: this.name,
-     email: this.email,
-     age: this.age,
-     password: this.password,
-     confirm_password: this.confirm_password,
-     terms: this.terms
+ constructor(private builder: FormBuilder) {}
 
-   });
- }
+   ngOnInit() {
+   		this.form = this.builder.group({
+    		name: ['', Validators.minLength(6)],
+    		email: ['', Validators.required],
+    		age: ['', Validators.required],
+    		password: ['', Validators.required],
+    		confirm_password: ['', Validators.required],
+    		terms: ['', Validators.required]
+   		});
+    }
+   
 };
