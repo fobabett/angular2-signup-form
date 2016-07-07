@@ -1,4 +1,4 @@
-import { Control } from "@angular/common";
+import { Control, ControlGroup } from "@angular/common";
 
 interface ValidationResult{
    [key:string]:boolean;
@@ -14,19 +14,26 @@ export class UserValidator {
     
       return null;
     }
-   
-    // static usernameTaken(control: Control): Promise<ValidationResult> {
 
-    //     return new Promise((resolve, reject) => {
-    //         setTimeout(() => {
-    //             if (control.value === "David") {
-    //                 resolve({"usernameTaken": true})
-    //             } else {
-    //                 resolve(null);
-    //             };
-                
-    //         }, 1000);
-    //     });
+    static password(control: Control): ValidationResult {
+		let passwordCheck = new RegExp("(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z])");
+    	if(!passwordCheck.test(control.value)) {
+    		return {"password": true};
+    	}
 
-    // }
+    	return null;
+    }
+
+    static confirm_password(control: Control): ValidationResult {
+
+    	return null;
+    }
+
+    static terms(control: Control): ValidationResult {
+    	if(control.value !== true) {
+    		return {"terms": true};
+    	}
+
+    	return null;
+    }
 }

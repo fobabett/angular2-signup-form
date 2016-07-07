@@ -1,27 +1,32 @@
-<form novalidate [ngFormModel]="form">
+<form novalidate [ngFormModel]="form" name="form">
 	<label>Name</label>
 	<input required type="text" [(ngModel)]="form.name" ngControl="name"/>
-	<div *ngIf="name.errors && name.touched">Must be 6-10 characters</div>
 
 	<label>Age</label>
 	<input required type="number" [(ngModel)]="form.age" ngControl="age"/>
-	<div *ngIf="age.errors && age.touched">Age must be between 18 and 40</div>
 
 	<label>Email</label>
 	<input required type="text" [(ngModel)]="form.email" ngContorl="email"/>
-	<div *ngIf="email.errors && email.touched">Must be a valid email with 5-10 characters</div>
 
-	<!-- <label>Password</label>
-	<input required type="password" [(ngModel)]="password" /> -->
-	<!-- <div [hidden]="password.valid">Password is required</div> -->
+	<label>Password</label>
+	<input required type="text" [(ngModel)]="form.password" ngControl="password"/>
 
-	<!-- <label>Confirm Password</label>
-	<input required type="password" [(ngModel)]="confirm_password" /> -->
-	<!-- <div [hidden]="confirm_password.valid">Name is required</div> -->
+	<label>Confirm Password</label>
+	<input required type="test" [(ngModel)]="form.confirm_password" ngControl="confirm_password"/>
 
-	<!-- <label>Agree to Terms</label>
-	<input required type="checkbox" [(ngModel)]="form.terms" ngControl="terms" #terms="ngForm"/> -->
-	<!-- <div [hidden]="terms.valid || terms.pristine">You must agree to the terms</div> -->
+	<label>Agree to Terms</label>
+	<input required type="checkbox" [(ngModel)]="form.terms" ngControl="terms"/>
 
-	<button (click)="signup()">Sign Up</button>
+	<div class="errors">
+		<p *ngIf="terms.erorrs || !terms.valid">You must agree to the terms</p>
+	<!-- <p *ngIf="form.matchingPassword.errors">doesn't match</p> -->
+		<p *ngIf="password.errors && password.touched">Password must contain least 1 uppercase character, 1 special character or number, length 6-20 characters</p>
+		<p *ngIf="email.errors && email.touched">Must be a valid email with 5-10 characters</p>
+		<p *ngIf="age.errors && age.touched">Age must be between 18 and 40</p>
+		<p *ngIf="name.errors && name.touched">Must be 6-10 characters</p>
+
+		
+	</div>
+
+	<button (click)="signup()" [disabled]="!form.valid">Sign Up</button>
 </form>
