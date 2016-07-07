@@ -1,0 +1,28 @@
+<form >
+	<label>Name</label>
+	<input required type="text" [(ngModel)]="name" />
+	<!-- <div [hidden]="name.valid">Name is required</div> -->
+	{{name | async}}
+
+	<label>Age</label>
+	<input required type="text" [(ngModel)]="age" />
+	<!-- <div [hidden]="age.valid">Age is required</div> -->
+
+	<label>Email</label>
+	<input required type="text" [(ngModel)]="email" />
+	<!-- <div [hidden]="email.valid">Email is required</div> -->
+
+	<label>Password</label>
+	<input required type="password" [(ngModel)]="password" />
+	<!-- <div [hidden]="password.valid">Password is required</div> -->
+
+	<label>Confirm Password</label>
+	<input required type="password" [(ngModel)]="confirm_password" />
+	<!-- <div [hidden]="confirm_password.valid">Name is required</div> -->
+
+	<label>Agree to Terms</label>
+	<input required type="checkbox" [(ngModel)]="terms" />
+	<!-- <div [hidden]="terms.valid">You must agree to the terms</div> -->
+
+	<button (click)="signup()">Sign Up</button>
+</form>
